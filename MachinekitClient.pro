@@ -2,7 +2,7 @@ TEMPLATE = app
 
 TARGET = machinekit-client
 
-# CONFIG += console
+CONFIG += console
 
 QT += qml quick widgets
 
@@ -18,14 +18,18 @@ INSTALLS =
 
 include(paths.pri)
 
-ios: {
+macx-ios-clang: {
     LIBS += -L$$PROTOBUF_LIB_PATH
     LIBS += -L$$ZEROMQ_LIB_PATH
     LIBS += -L$$LIBSODIUM_LIB_PATH
     LIBS += -lsodium -lzmq -lprotobuf
     LIBS += -lmachinetalk-protobuf
-    QMAKE_INFO_PLIST = Info.plist
-    QMAKE_POST_LINK += cp -n $$PWD/icons/machinekit2.iconset/* $${OUT_PWD}/.
+#    LIBS += -lmachinekitcontrolsplugin
+#    QMAKE_INFO_PLIST = Info.plist
+#    QMAKE_POST_LINK += cp -n $$PWD/icons/machinekit2.iconset/* $${OUT_PWD}/.
+#    ICON = $$PWD/icons/machinekit.icns
+    ios_icon.files = $$files($$PWD/ios/AppIcon*.png)
+    QMAKE_BUNDLE_DATA += ios_icon
 }
 
 android: {
@@ -38,7 +42,7 @@ windows: {
     RC_FILE = icon.rc
 }
 
-macx: {
+macx-clang: {
     QMAKE_INFO_PLIST = mac_Info.plist
     ICON = $$PWD/icons/machinekit.icns
     QMAKE_POST_LINK += $$QMAKE_COPY $$PWD/$${QMAKE_INFO_PLIST} $${TARGET}.app/Contents/Info.plist $$escape_expand(\n\t)

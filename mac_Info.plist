@@ -11,7 +11,7 @@
         <key>CFBundleIconFile</key>
         <string>machinekit.icns</string>
         <key>CFBundleIdentifier</key>
-        <string>io.machinekit.appdiscover</string>
+        <string>luminize.appdiscover</string>
         <key>NSHumanReadableCopyright</key>
         <string>The Machinekit Project 2014</string>
         <key>UIRequiredDeviceCapabilities</key>
